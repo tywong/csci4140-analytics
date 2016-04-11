@@ -22,7 +22,7 @@ router.route('/jsonp').get(function(req,res) {
   // trace.page = 
   // trace.ip = ipAddr
 
-  console.log(ip);
+  console.log(ipAddr);
   console.log(req.headers['http-referer']);
   res.send("console.log('done')");
 })
