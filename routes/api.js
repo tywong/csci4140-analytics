@@ -9,22 +9,46 @@ router.get('/', function(req, res, next) {
 });
 
 router.route('/jsonp').get(function(req,res) {
-	var ipAddr = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	var ipAddr = (req.headers['x-forwarded-for'] || req.connection.remoteAddress) || "no ip";
+  var referer = req.headers['referer'] || "no referer";
+
   cookie = req.params.cookie;
   if(cookie === undefined) {
-  	console.log("no cookies");
+  	var msg = "Problem: no cookie is set";
+  	console.log(msg);
+	  res.send("console.log('" + msg + "')");
   }
+  else {
+  	var cookieValue = {};
+  	cookie.split('; ').forEach(
+  		function(item) {
+  			var array = item.split('=');
+  			cookieValue[array[0]] = array[1];
+  		}
+  	);
 
-  // var trace = new Trace();
-  // trace.browserID = undefined;
-  // trace.currentTime =
-  // trace.lastTime 
-  // trace.page = 
-  // trace.ip = ipAddr
+  	// set up mongo object
 
-  console.log(ipAddr);
-  console.log(req.headers['referer']);
-  res.send("console.log('done')");
+	  var trace = new Trace();
+
+	  trace.browserID = cookieValue['TrackerID'];
+	  trace.currentTime = (new Date()).getTime();
+	  trace.lastTime = parseInt(cookieValue['LastVisit']);
+	  trace.page = referer;
+	  trace.ip = ipAddr;
+
+	  trace.save(function(err) {
+			if(err) {
+				console.err(err);
+				res.send('console.log("trace cannot be created");');
+			}
+			else {
+				var msg = "trace is created";
+				console.log(msg);
+				res.send("console.log('" + msg + "');");
+			}
+		});
+  }
 })
 
 module.exports = router;
