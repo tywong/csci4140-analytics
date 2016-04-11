@@ -5,7 +5,8 @@ var TraceSchema = new Schema({
 	browserID: String,
 	currentTime: Number,
 	lastTime: Number,
-	page:	String
+	page:	String,
+	ip: String
 });
 
 if(process.env.MONGOLAB_URI) {
