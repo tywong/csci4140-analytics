@@ -8,6 +8,8 @@ router.get('/', function(req, res, next) {
   res.send('<h1>STOP</h1>');
 });
 
+// Print all traces
+
 router.route('/traces').get(function(req,res) {
 
 	function compare(a, b) {
@@ -38,6 +40,8 @@ router.route('/traces').get(function(req,res) {
 	})
 
 });
+
+// Ajax using POST method
 
 router.route('/ajax').post(function(req, res) {
 	var ipAddr = (req.headers['x-forwarded-for'] || req.connection.remoteAddress) || "no ip";
@@ -83,6 +87,8 @@ router.route('/ajax').post(function(req, res) {
 		});
   }
 });
+
+// JSONP using GET method
 
 router.route('/jsonp').get(function(req,res) {
 	var ipAddr = (req.headers['x-forwarded-for'] || req.connection.remoteAddress) || "no ip";
