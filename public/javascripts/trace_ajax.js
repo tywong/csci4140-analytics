@@ -29,8 +29,8 @@ var tracker = (function() {
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send(postContent);
 
-		xhr.onload = function(res) {
-			console.log(res.responseText);
+		xhr.onload = function() {
+			console.log(xhr.responseText);
 		};
 	});
 })();
