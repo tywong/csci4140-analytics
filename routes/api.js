@@ -3,9 +3,42 @@ var router = express.Router();
 var Trace = require('../models/trace');
 
 
+
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('<h1>STOP</h1>');
+});
+
+router.route('/traces').get(function(req,res) {
+
+	function compare(a, b) {
+		if(a.browserID === b.browserID) {
+			return b.currentTime - a.currentTime;
+		}
+		else {
+			return parseInt(b.browserID) - parseInt(a.browserID);
+		}
+	}
+
+	Trace.find(function(err, traces) {
+		if(err)
+			res.send(err);
+		else {
+			res.json((traces.map(
+				function(item) {
+					return {
+						browserID: item.browserID,
+						currentTime: item.currentTime,
+						lastTime: item.lastTime,
+						page: item.page,
+						ip: item.ip
+					};
+				})).sort(compare)
+			);
+		}
+	})
+
 });
 
 router.route('/jsonp').get(function(req,res) {
