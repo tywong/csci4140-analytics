@@ -1,5 +1,5 @@
 var init = (function() {
-	var URL = "https://csci4140-analytics.herokuapp.com/jsonp"
+	var URL = "https://csci4140-analytics.herokuapp.com/api/jsonp"
 	var FIELD = "cookie"
 
 	return (function () {
