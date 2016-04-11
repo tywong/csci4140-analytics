@@ -47,8 +47,8 @@ router.route('/ajax').post(function(req, res) {
 
   if(cookie === undefined) {
   	var msg = "Problem: no cookie is set";
-  	console.log(msg);
-	  res.send("console.log('" + msg + "')");
+  	console.err(msg);
+		res.send({'msg': msg});
   }
   else {
   	var cookieValue = {};
@@ -77,7 +77,7 @@ router.route('/ajax').post(function(req, res) {
 			else {
 				var msg = "trace is created";
 				console.log(msg);
-				res.send("console.log('" + msg + "');");
+				res.send({'msg': msg});
 			}
 		});
   }
