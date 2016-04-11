@@ -77,6 +77,7 @@ router.route('/ajax').post(function(req, res) {
 			else {
 				var msg = "trace is created";
 				console.log(msg);
+				res.setHeader("Access-Control-Allow-Origin", "*");
 				res.send({'msg': msg});
 			}
 		});
