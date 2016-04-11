@@ -25,7 +25,7 @@ var tracker = (function() {
 
 		// script preparation and insertion //
 		var script = document.createElement("script");
-		script.src = scrciptTarget;
+		script.src = scriptTarget;
 		document.getElementsByTagName("body")[0].appendChild(script);
 	});
 })();
