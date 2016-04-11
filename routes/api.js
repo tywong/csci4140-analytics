@@ -12,7 +12,7 @@ router.route('/jsonp').get(function(req,res) {
 	var ipAddr = (req.headers['x-forwarded-for'] || req.connection.remoteAddress) || "no ip";
   var referer = req.headers['referer'] || "no referer";
 
-  var cookie = req.params.cookie;
+  var cookie = (req.query).cookie;
   if(cookie === undefined) {
   	var msg = "Problem: no cookie is set";
   	console.log(msg);
