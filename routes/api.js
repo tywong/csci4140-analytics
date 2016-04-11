@@ -7,8 +7,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.route('/jsonp').get(function(req,res) {
-  cookie = req.param('cookie');
-  console.log(cookie);
+  cookie = req.params.cookie;
+  if(cookie === undefined) {
+  	console.log("nothing");
+  }
+  else 
+  	console.log(cookie);
   res.send("console.log('done')");
 })
 
