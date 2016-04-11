@@ -14,7 +14,7 @@ var tracker = (function() {
 
 		// tracker cookie string
 
-		if(document.cookie === "") {
+		if(document.cookie === "" || document.cookie.indexOf(ID_FIELD) === -1) {
 			document.cookie = ID_FIELD + "=" + now.getTime() + ";expires=" + expiry.toGMTString();
 			document.cookie = LAST_VISIT_FIELD + "=" + now.getTime(); + ";expires=" + expiry.toGMTString();
 		}
