@@ -7,7 +7,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.route('/jsonp').get(function(req,res) {
-  res.json(req.param('abc'));
+  cookie = req.param('cookie');
+  console.log(cookie);
+  res.send("console.log('done')");
 })
 
 module.exports = router;
